@@ -3,15 +3,17 @@ import java.awt.*;
 
 public class Cell extends JPanel {
 
-    private final int x, y;
-    private final int width;
+    private int x, y;
+    private int size;
     private Color color;
+    private CellType cellType;
 
-    Cell(int x, int y, int width, Color color) {
+    Cell(int x, int y, int size, Color color, CellType cellType) {
         this.x = x;
         this.y = y;
-        this.width = width;
+        this.size = size;
         this.color = color;
+        this.cellType = cellType;
     }
 
     @Override
@@ -20,14 +22,47 @@ public class Cell extends JPanel {
 
         // Draw the background
         g.setColor(this.color);
-        g.fillRect(this.x, this.y, this.width, this.width);
+
+        // We want square cells
+        g.fillRect(this.x, this.y, this.size, this.size);
 
         // Draw the box
         g.setColor(Color.LIGHT_GRAY);
-        g.drawRect(this.x, this.y, this.width, this.width);
+
+        g.drawRect(this.x, this.y, this.size, this.size);
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
+    }
+
+    public int getWidth() {
+        return this.size;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public void setCellType(CellType cellType) {
+        this.cellType = cellType;
+    }
+
+    public CellType getCellType() { return this.cellType; }
 }
